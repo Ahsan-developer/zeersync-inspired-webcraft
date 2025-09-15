@@ -16,7 +16,7 @@ const Header = () => {
             <div className="hero-gradient p-2 rounded-xl shadow-elegant">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-xl font-bold gradient-text">
               TechFlow
             </span>
           </div>
@@ -39,7 +39,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="hero-gradient shadow-elegant hover:shadow-glow transition-smooth">
+            <Button className="premium-gradient shadow-premium hover:shadow-glow transition-smooth">
               Get Started
             </Button>
           </div>
@@ -69,7 +69,7 @@ const Header = () => {
               <a href="#contact" className="text-foreground hover:text-primary transition-smooth font-medium">
                 Contact
               </a>
-              <Button className="hero-gradient shadow-elegant w-full mt-4">
+              <Button className="premium-gradient shadow-premium w-full mt-4">
                 Get Started
               </Button>
             </nav>
