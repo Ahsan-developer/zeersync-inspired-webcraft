@@ -1,30 +1,118 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const HeroSection = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Animated Background */}
-      <div className="absolute inset-0 hero-gradient opacity-95"></div>
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+
+    // Network animation properties
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      opacity: number;
+    }> = [];
+
+    const particleCount = 50;
+    const connectionDistance = 150;
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.8 + 0.2
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      {/* Background Animation Layers */}
-      <div className="absolute inset-0">
-        {/* Moving Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-accent/25 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-3/4 left-1/3 w-64 h-64 premium-gradient opacity-20 rounded-full blur-2xl floating-animation" style={{ animationDelay: '1s' }}></div>
-        
-        {/* Animated Particles */}
-        <div className="absolute top-20 left-10 w-3 h-3 bg-primary/60 rounded-full floating-animation sparkle-animation"></div>
-        <div className="absolute top-40 right-20 w-2 h-2 bg-accent/70 rounded-full floating-animation" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute bottom-40 left-20 w-4 h-4 bg-ring/50 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '5s' }}></div>
-        <div className="absolute top-60 right-40 w-2 h-2 bg-primary/40 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-60 right-60 w-3 h-3 bg-accent/50 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-32 right-1/3 w-20 h-20 border border-primary/30 rotate-45 floating-animation" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-32 left-1/3 w-16 h-16 border border-accent/25 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '6s' }}></div>
-      </div>
+      // Update particles
+      particles.forEach(particle => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Bounce off edges
+        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
+        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
+
+        // Keep particles in bounds
+        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+      });
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = (1 - distance / connectionDistance) * 0.3;
+            ctx.strokeStyle = `hsla(280, 100%, 85%, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      particles.forEach(particle => {
+        ctx.fillStyle = `hsla(280, 100%, 85%, ${particle.opacity * 0.6})`;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    const handleResize = () => {
+      resizeCanvas();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background dark">
+      {/* Network Animation Background */}
+      <canvas 
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ background: 'linear-gradient(135deg, hsl(222.2, 84%, 4.9%) 0%, hsl(217.2, 32.6%, 17.5%) 100%)' }}
+      />
+      
+      {/* Dark theme gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-card/30"></div>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
