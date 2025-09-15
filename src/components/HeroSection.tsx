@@ -37,9 +37,9 @@ const HeroSection = () => {
             </Button>
             
             <Button 
-              variant="outline" 
+              variant="hero" 
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-smooth group"
+              className="transition-smooth group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Demo
