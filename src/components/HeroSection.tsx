@@ -3,7 +3,7 @@ import { ArrowRight, Play, Zap } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 hero-gradient"></div>
       
