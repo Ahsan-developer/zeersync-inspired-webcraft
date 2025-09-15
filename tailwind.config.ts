@@ -100,8 +100,8 @@ export default {
           }
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 30px hsl(270, 95%, 75% / 0.4)" },
-          "50%": { boxShadow: "0 0 60px hsl(270, 95%, 75% / 0.8)" },
+          "0%, 100%": { boxShadow: "0 0 30px hsl(280, 100%, 80% / 0.5)" },
+          "50%": { boxShadow: "0 0 60px hsl(280, 100%, 80% / 0.9)" },
         },
         "slide-in-right": {
           "0%": { transform: "translateX(100%)", opacity: "0" },
