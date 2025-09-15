@@ -1,181 +1,179 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { ArrowRight, Play, Zap } from "lucide-react";
 
 const HeroSection = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-
-    // Network animation properties
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      opacity: number;
-    }> = [];
-
-    const particleCount = 50;
-    const connectionDistance = 150;
-
-    // Initialize particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.8 + 0.2
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update particles
-      particles.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Bounce off edges
-        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
-        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
-
-        // Keep particles in bounds
-        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-      });
-
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.3;
-            ctx.strokeStyle = `hsla(280, 100%, 85%, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
-      particles.forEach(particle => {
-        ctx.fillStyle = `hsla(280, 100%, 85%, ${particle.opacity * 0.6})`;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      resizeCanvas();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background dark">
-      {/* Network Animation Background */}
-      <canvas 
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ background: 'linear-gradient(135deg, hsl(222.2, 84%, 4.9%) 0%, hsl(217.2, 32.6%, 17.5%) 100%)' }}
-      />
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0 hero-gradient"></div>
       
-      {/* Dark theme gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-card/30"></div>
+      {/* Dynamic Grid Pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.3) 1px, transparent 0)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
       
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center text-white">
-        <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 fade-in-up">
-              Digital Innovation
-              <span className="block gradient-text">
+      {/* Enhanced Floating Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 premium-gradient rounded-full floating-animation blur-xl opacity-60"></div>
+      <div className="absolute top-40 right-20 w-24 h-24 accent-gradient rounded-full floating-animation blur-lg opacity-40" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-40 left-20 w-16 h-16 glass-gradient rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute top-60 right-40 w-12 h-12 bg-primary/40 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute bottom-60 right-60 w-20 h-20 premium-gradient rounded-full floating-animation blur-lg opacity-30" style={{ animationDelay: '3s' }}></div>
+      
+      {/* Split Layout Container */}
+      <div className="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        
+        {/* Left Content */}
+        <div className="text-white space-y-8">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight fade-in-up">
+              Digital
+              <span className="block gradient-text drop-shadow-2xl">
+                Innovation
+              </span>
+              <span className="block text-accent">
                 Redefined
               </span>
             </h1>
+            
+            <p className="text-lg md:text-xl text-white/80 max-w-xl fade-in-up stagger-1 leading-relaxed">
+              Transform your business with cutting-edge AI solutions, custom software development, and innovative technology services that drive exponential growth.
+            </p>
+          </div>
           
-          <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto fade-in-up stagger-1">
-            Your trusted partner in digital transformation. We specialize in cutting-edge IT solutions, 
-            custom software development, and innovative technology services that drive business growth.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up stagger-2">
+          <div className="flex flex-col sm:flex-row gap-4 fade-in-up stagger-2">
             <Button 
+              variant="premium"
               size="lg" 
-              variant="glass"
-              className="text-primary hover:text-white group"
+              className="group shadow-glow hover:shadow-premium transition-all duration-300"
             >
-              Explore Solutions
+              Start Your Journey
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
             <Button 
-              variant="hero" 
+              variant="glass" 
               size="lg"
-              className="group"
+              className="transition-all duration-300 group hover:scale-105"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Demo
             </Button>
           </div>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 pt-8 fade-in-up stagger-3">
+            <div className="text-center">
+              <div className="text-2xl font-bold gradient-text">500+</div>
+              <div className="text-white/60 text-sm">Projects</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold gradient-text">99%</div>
+              <div className="text-white/60 text-sm">Success Rate</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold gradient-text">24/7</div>
+              <div className="text-white/60 text-sm">Support</div>
+            </div>
+          </div>
         </div>
         
-        {/* Partner Badges */}
-        <div className="mt-16 fade-in-up stagger-3">
-          <p className="text-white/70 mb-6 text-sm uppercase tracking-wide">Trusted by Industry Leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-              <span className="text-white font-semibold">ServiceNow</span>
+        {/* Right Visual Element */}
+        <div className="relative lg:block hidden">
+          <div className="relative">
+            {/* Main Visual Card */}
+            <div className="glass-gradient p-8 rounded-3xl shadow-premium border border-white/10 backdrop-blur-xl fade-in-up stagger-1">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 premium-gradient rounded-xl flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold">AI-Powered Solutions</h3>
+                    <p className="text-white/60 text-sm">Next-gen technology</p>
+                  </div>
+                </div>
+                
+                {/* Progress Bars */}
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-white/80">Performance</span>
+                      <span className="text-accent">98%</span>
+                    </div>
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-full accent-gradient w-[98%] rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-white/80">Security</span>
+                      <span className="text-primary">100%</span>
+                    </div>
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-full premium-gradient w-full rounded-full"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-white/80">Innovation</span>
+                      <span className="text-accent">95%</span>
+                    </div>
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-full accent-gradient w-[95%] rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-              <span className="text-white font-semibold">Salesforce</span>
+            
+            {/* Floating Cards */}
+            <div className="absolute -top-4 -right-4 glass-gradient p-4 rounded-2xl border border-white/10 backdrop-blur-xl sparkle-animation">
+              <div className="text-2xl">🚀</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-              <span className="text-white font-semibold">Power BI</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-              <span className="text-white font-semibold">Tableau</span>
+            <div className="absolute -bottom-4 -left-4 glass-gradient p-4 rounded-2xl border border-white/10 backdrop-blur-xl floating-animation">
+              <div className="text-2xl">⚡</div>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Bottom Wave */}
+      {/* Partner Badges - Redesigned */}
+      <div className="absolute bottom-32 left-0 right-0 z-20">
+        <div className="container mx-auto px-6 fade-in-up stagger-4">
+          <p className="text-white/50 mb-4 text-xs uppercase tracking-wider text-center">Trusted by Industry Leaders</p>
+          <div className="flex flex-wrap justify-center items-center gap-6 opacity-60">
+            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
+              ServiceNow
+            </div>
+            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
+              Salesforce  
+            </div>
+            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
+              Power BI
+            </div>
+            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
+              Tableau
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Enhanced Bottom Wave */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-20">
+        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-24">
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--background))" />
+              <stop offset="50%" stopColor="hsl(var(--card))" />
+              <stop offset="100%" stopColor="hsl(var(--background))" />
+            </linearGradient>
+          </defs>
           <path 
             d="M0,60 C300,20 600,100 900,60 C1050,30 1150,80 1200,60 L1200,120 L0,120 Z" 
-            fill="hsl(var(--background))"
+            fill="url(#waveGradient)"
           />
         </svg>
       </div>

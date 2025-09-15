@@ -5,19 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-primary to-accent text-white hover:shadow-glow shadow-elegant border border-primary/30",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-elegant",
-        outline: "border border-primary/30 bg-background/50 backdrop-blur-sm hover:bg-primary/10 hover:text-primary text-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-elegant",
-        ghost: "hover:bg-primary/10 hover:text-primary text-foreground/80",
-        link: "text-primary underline-offset-4 hover:underline hover:text-accent",
-        hero: "bg-primary/20 text-white border border-primary/40 hover:bg-primary/30 backdrop-blur-sm shadow-glass hover:shadow-glow",
-        premium: "bg-gradient-to-r from-primary via-accent to-ring text-white shadow-premium hover:shadow-glow border border-primary/30",
-        glass: "bg-background/20 backdrop-blur-xl text-foreground border border-primary/20 hover:bg-primary/10 shadow-glass",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        hero: "bg-white/10 text-white border border-white/30 hover:bg-white/20 backdrop-blur-sm shadow-glass",
+        premium: "premium-gradient text-white shadow-premium hover:shadow-glow",
+        glass: "glass-gradient text-foreground border border-white/20 hover:bg-white/10",
       },
       size: {
         default: "h-10 px-4 py-2",
