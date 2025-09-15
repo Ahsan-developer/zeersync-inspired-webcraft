@@ -41,9 +41,8 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="bg-gradient-to-r from-primary to-accent text-white hover:shadow-glow transition-smooth border border-primary/30">
+            <Button variant="premium" className="transition-smooth">
               Get Started
             </Button>
           </div>
@@ -73,7 +72,7 @@ const Header = () => {
               <a href="#contact" className="text-foreground/90 hover:text-primary transition-smooth font-medium px-4 py-2 rounded hover:bg-primary/10">
                 Contact
               </a>
-              <Button className="bg-gradient-to-r from-primary to-accent text-white w-full mt-4 border border-primary/30">
+              <Button variant="premium" className="w-full mt-4">
                 Get Started
               </Button>
             </nav>

@@ -132,7 +132,8 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up stagger-2">
             <Button 
               size="lg" 
-              className="bg-white text-primary hover:bg-white/90 shadow-elegant hover:shadow-glow transition-smooth group"
+              variant="glass"
+              className="text-primary hover:text-white group"
             >
               Explore Solutions
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -141,7 +142,7 @@ const HeroSection = () => {
             <Button 
               variant="hero" 
               size="lg"
-              className="transition-smooth group"
+              className="group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Demo
