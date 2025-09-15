@@ -3,15 +3,28 @@ import { ArrowRight, Play } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Animated Background */}
-      <div className="absolute inset-0 hero-gradient opacity-90"></div>
+      <div className="absolute inset-0 hero-gradient opacity-95"></div>
       
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full floating-animation sparkle-animation"></div>
-      <div className="absolute top-40 right-20 w-16 h-16 bg-accent/20 rounded-full floating-animation" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary-glow/30 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
-      <div className="absolute top-60 right-40 w-8 h-8 bg-primary/30 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
+      {/* Background Animation Layers */}
+      <div className="absolute inset-0">
+        {/* Moving Gradient Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-accent/25 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-3/4 left-1/3 w-64 h-64 premium-gradient opacity-20 rounded-full blur-2xl floating-animation" style={{ animationDelay: '1s' }}></div>
+        
+        {/* Animated Particles */}
+        <div className="absolute top-20 left-10 w-3 h-3 bg-primary/60 rounded-full floating-animation sparkle-animation"></div>
+        <div className="absolute top-40 right-20 w-2 h-2 bg-accent/70 rounded-full floating-animation" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-40 left-20 w-4 h-4 bg-ring/50 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '5s' }}></div>
+        <div className="absolute top-60 right-40 w-2 h-2 bg-primary/40 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-60 right-60 w-3 h-3 bg-accent/50 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
+        
+        {/* Geometric Shapes */}
+        <div className="absolute top-32 right-1/3 w-20 h-20 border border-primary/30 rotate-45 floating-animation" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-32 left-1/3 w-16 h-16 border border-accent/25 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '6s' }}></div>
+      </div>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
