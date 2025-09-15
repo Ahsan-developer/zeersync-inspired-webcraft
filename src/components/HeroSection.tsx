@@ -1,179 +1,79 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Zap } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Enhanced Animated Background */}
-      <div className="absolute inset-0 hero-gradient"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 hero-gradient opacity-90"></div>
       
-      {/* Dynamic Grid Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.3) 1px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div>
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full floating-animation sparkle-animation"></div>
+      <div className="absolute top-40 right-20 w-16 h-16 bg-accent/20 rounded-full floating-animation" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary-glow/30 rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute top-60 right-40 w-8 h-8 bg-primary/30 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
       
-      {/* Enhanced Floating Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 premium-gradient rounded-full floating-animation blur-xl opacity-60"></div>
-      <div className="absolute top-40 right-20 w-24 h-24 accent-gradient rounded-full floating-animation blur-lg opacity-40" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute bottom-40 left-20 w-16 h-16 glass-gradient rounded-full floating-animation sparkle-animation" style={{ animationDelay: '4s' }}></div>
-      <div className="absolute top-60 right-40 w-12 h-12 bg-primary/40 rounded-full floating-animation" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute bottom-60 right-60 w-20 h-20 premium-gradient rounded-full floating-animation blur-lg opacity-30" style={{ animationDelay: '3s' }}></div>
-      
-      {/* Split Layout Container */}
-      <div className="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-        
-        {/* Left Content */}
-        <div className="text-white space-y-8">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight fade-in-up">
-              Digital
-              <span className="block gradient-text drop-shadow-2xl">
-                Innovation
-              </span>
-              <span className="block text-accent">
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 text-center text-white">
+        <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 fade-in-up">
+              Digital Innovation
+              <span className="block gradient-text">
                 Redefined
               </span>
             </h1>
-            
-            <p className="text-lg md:text-xl text-white/80 max-w-xl fade-in-up stagger-1 leading-relaxed">
-              Transform your business with cutting-edge AI solutions, custom software development, and innovative technology services that drive exponential growth.
-            </p>
-          </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 fade-in-up stagger-2">
+          <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto fade-in-up stagger-1">
+            Your trusted partner in digital transformation. We specialize in cutting-edge IT solutions, 
+            custom software development, and innovative technology services that drive business growth.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up stagger-2">
             <Button 
-              variant="premium"
               size="lg" 
-              className="group shadow-glow hover:shadow-premium transition-all duration-300"
+              className="bg-white text-primary hover:bg-white/90 shadow-elegant hover:shadow-glow transition-smooth group"
             >
-              Start Your Journey
+              Explore Solutions
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
             <Button 
-              variant="glass" 
+              variant="hero" 
               size="lg"
-              className="transition-all duration-300 group hover:scale-105"
+              className="transition-smooth group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Demo
             </Button>
           </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-8 fade-in-up stagger-3">
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">500+</div>
-              <div className="text-white/60 text-sm">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">99%</div>
-              <div className="text-white/60 text-sm">Success Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">24/7</div>
-              <div className="text-white/60 text-sm">Support</div>
-            </div>
-          </div>
         </div>
         
-        {/* Right Visual Element */}
-        <div className="relative lg:block hidden">
-          <div className="relative">
-            {/* Main Visual Card */}
-            <div className="glass-gradient p-8 rounded-3xl shadow-premium border border-white/10 backdrop-blur-xl fade-in-up stagger-1">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 premium-gradient rounded-xl flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold">AI-Powered Solutions</h3>
-                    <p className="text-white/60 text-sm">Next-gen technology</p>
-                  </div>
-                </div>
-                
-                {/* Progress Bars */}
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-white/80">Performance</span>
-                      <span className="text-accent">98%</span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full accent-gradient w-[98%] rounded-full"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-white/80">Security</span>
-                      <span className="text-primary">100%</span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full premium-gradient w-full rounded-full"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-white/80">Innovation</span>
-                      <span className="text-accent">95%</span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full accent-gradient w-[95%] rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* Partner Badges */}
+        <div className="mt-16 fade-in-up stagger-3">
+          <p className="text-white/70 mb-6 text-sm uppercase tracking-wide">Trusted by Industry Leaders</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-white font-semibold">ServiceNow</span>
             </div>
-            
-            {/* Floating Cards */}
-            <div className="absolute -top-4 -right-4 glass-gradient p-4 rounded-2xl border border-white/10 backdrop-blur-xl sparkle-animation">
-              <div className="text-2xl">🚀</div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-white font-semibold">Salesforce</span>
             </div>
-            <div className="absolute -bottom-4 -left-4 glass-gradient p-4 rounded-2xl border border-white/10 backdrop-blur-xl floating-animation">
-              <div className="text-2xl">⚡</div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-white font-semibold">Power BI</span>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+              <span className="text-white font-semibold">Tableau</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Partner Badges - Redesigned */}
-      <div className="absolute bottom-32 left-0 right-0 z-20">
-        <div className="container mx-auto px-6 fade-in-up stagger-4">
-          <p className="text-white/50 mb-4 text-xs uppercase tracking-wider text-center">Trusted by Industry Leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-6 opacity-60">
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              ServiceNow
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Salesforce  
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Power BI
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Tableau
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Enhanced Bottom Wave */}
+      {/* Bottom Wave */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-24">
-          <defs>
-            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--background))" />
-              <stop offset="50%" stopColor="hsl(var(--card))" />
-              <stop offset="100%" stopColor="hsl(var(--background))" />
-            </linearGradient>
-          </defs>
+        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-20">
           <path 
             d="M0,60 C300,20 600,100 900,60 C1050,30 1150,80 1200,60 L1200,120 L0,120 Z" 
-            fill="url(#waveGradient)"
+            fill="hsl(var(--background))"
           />
         </svg>
       </div>
