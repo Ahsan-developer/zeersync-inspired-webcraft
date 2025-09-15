@@ -63,21 +63,6 @@ const HeroSection = () => {
             </Button>
           </div>
           
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-8 fade-in-up stagger-3">
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">500+</div>
-              <div className="text-white/60 text-sm">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">99%</div>
-              <div className="text-white/60 text-sm">Success Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold gradient-text">24/7</div>
-              <div className="text-white/60 text-sm">Support</div>
-            </div>
-          </div>
         </div>
         
         {/* Right Visual Element */}
@@ -140,26 +125,6 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Partner Badges - Redesigned */}
-      <div className="absolute bottom-32 left-0 right-0 z-20">
-        <div className="container mx-auto px-6 fade-in-up stagger-4">
-          <p className="text-white/50 mb-4 text-xs uppercase tracking-wider text-center">Trusted by Industry Leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-6 opacity-60">
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              ServiceNow
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Salesforce  
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Power BI
-            </div>
-            <div className="glass-gradient px-4 py-2 rounded-full border border-white/10 text-white text-sm font-medium">
-              Tableau
-            </div>
-          </div>
-        </div>
-      </div>
       
       {/* Enhanced Bottom Wave */}
       <div className="absolute bottom-0 left-0 right-0">
