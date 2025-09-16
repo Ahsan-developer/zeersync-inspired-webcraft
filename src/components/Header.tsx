@@ -23,7 +23,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-smooth font-medium">
+            <a href="/" className="text-foreground hover:text-primary transition-smooth font-medium">
               Home
             </a>
             <a href="#services" className="text-foreground hover:text-primary transition-smooth font-medium">
@@ -31,6 +31,9 @@ const Header = () => {
             </a>
             <a href="#solutions" className="text-foreground hover:text-primary transition-smooth font-medium">
               Solutions
+            </a>
+            <a href="/careers" className="text-foreground hover:text-primary transition-smooth font-medium">
+              Careers
             </a>
             <a href="#contact" className="text-foreground hover:text-primary transition-smooth font-medium">
               Contact
@@ -57,7 +60,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-border/50">
             <nav className="flex flex-col space-y-4">
-              <a href="#home" className="text-foreground hover:text-primary transition-smooth font-medium">
+              <a href="/" className="text-foreground hover:text-primary transition-smooth font-medium">
                 Home
               </a>
               <a href="#services" className="text-foreground hover:text-primary transition-smooth font-medium">
@@ -65,6 +68,9 @@ const Header = () => {
               </a>
               <a href="#solutions" className="text-foreground hover:text-primary transition-smooth font-medium">
                 Solutions
+              </a>
+              <a href="/careers" className="text-foreground hover:text-primary transition-smooth font-medium">
+                Careers
               </a>
               <a href="#contact" className="text-foreground hover:text-primary transition-smooth font-medium">
                 Contact
