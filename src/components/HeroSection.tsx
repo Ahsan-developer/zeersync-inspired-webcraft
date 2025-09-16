@@ -85,7 +85,7 @@ const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Particles Background */}
-      <div id="particles-js" className="absolute inset-0 z-[1] pointer-events-none" style={{ minHeight: '100vh' }}></div>
+      <div id="particles-js" className="absolute inset-0 z-[1]" style={{ minHeight: '100vh' }}></div>
       
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 hero-gradient z-0 opacity-80"></div>
