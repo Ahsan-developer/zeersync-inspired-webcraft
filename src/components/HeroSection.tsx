@@ -22,7 +22,11 @@ const HeroSection = () => {
               value: "#ffffff"
             },
             shape: {
-              type: "circle"
+              type: "circle",
+              stroke: {
+                width: 2,
+                color: "#ffffff"
+              }
             },
             opacity: {
               value: 0.3,
