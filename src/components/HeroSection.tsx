@@ -12,7 +12,7 @@ const HeroSection = () => {
         (window as any).particlesJS("particles-js", {
           particles: {
             number: {
-              value: 100,
+              value: 500,
               density: {
                 enable: true,
                 value_area: 800
