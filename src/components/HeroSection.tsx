@@ -50,7 +50,7 @@ const HeroSection = () => {
             }
           },
           interactivity: {
-            detect_on: "canvas",
+            detect_on: "window",
             events: {
               onhover: {
                 enable: true,
@@ -88,10 +88,10 @@ const HeroSection = () => {
       <div id="particles-js" className="absolute inset-0 z-[1]" style={{ minHeight: '100vh' }}></div>
       
       {/* Enhanced Animated Background */}
-      <div className="absolute inset-0 hero-gradient z-0 opacity-80"></div>
+      <div className="absolute inset-0 hero-gradient z-0 opacity-80 pointer-events-none"></div>
       
       {/* Dynamic Grid Pattern */}
-      <div className="absolute inset-0 opacity-20 z-[2]">
+      <div className="absolute inset-0 opacity-20 z-[2] pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.3) 1px, transparent 0)`,
           backgroundSize: '50px 50px'
