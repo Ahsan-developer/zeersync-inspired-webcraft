@@ -1,10 +1,88 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
+  message: string;
+}
 
 const ContactSection = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+
+    } catch (error: any) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background Pattern */}
@@ -30,53 +108,87 @@ const ContactSection = () => {
               <CardTitle className="text-2xl font-semibold">Get in Touch</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    First Name
-                  </label>
-                  <Input placeholder="John" className="transition-smooth focus:shadow-glow" />
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-2 block">
+                      First Name *
+                    </label>
+                    <Input 
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      placeholder="John" 
+                      className="transition-smooth focus:shadow-glow"
+                      required 
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-2 block">
+                      Last Name *
+                    </label>
+                    <Input 
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder="Doe" 
+                      className="transition-smooth focus:shadow-glow"
+                      required 
+                    />
+                  </div>
                 </div>
-                <div>
+                
+                <div className="mb-6">
                   <label className="text-sm font-medium text-foreground mb-2 block">
-                    Last Name
+                    Email Address *
                   </label>
-                  <Input placeholder="Doe" className="transition-smooth focus:shadow-glow" />
+                  <Input 
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="john@company.com" 
+                    className="transition-smooth focus:shadow-glow"
+                    required 
+                  />
                 </div>
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Email Address
-                </label>
-                <Input 
-                  type="email" 
-                  placeholder="john@company.com" 
-                  className="transition-smooth focus:shadow-glow" 
-                />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Company
-                </label>
-                <Input placeholder="Your Company" className="transition-smooth focus:shadow-glow" />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Message
-                </label>
-                <Textarea 
-                  placeholder="Tell us about your project and how we can help..."
-                  className="min-h-[120px] transition-smooth focus:shadow-glow resize-none"
-                />
-              </div>
-              
-              <Button className="w-full hero-gradient shadow-elegant hover:shadow-glow transition-smooth group">
-                Send Message
-                <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                
+                <div className="mb-6">
+                  <label className="text-sm font-medium text-foreground mb-2 block">
+                    Company
+                  </label>
+                  <Input 
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    placeholder="Your Company" 
+                    className="transition-smooth focus:shadow-glow" 
+                  />
+                </div>
+                
+                <div className="mb-6">
+                  <label className="text-sm font-medium text-foreground mb-2 block">
+                    Message *
+                  </label>
+                  <Textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us about your project and how we can help..."
+                    className="min-h-[120px] transition-smooth focus:shadow-glow resize-none"
+                    required
+                  />
+                </div>
+                
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full hero-gradient shadow-elegant hover:shadow-glow transition-smooth group"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </form>
             </CardContent>
           </Card>
 
